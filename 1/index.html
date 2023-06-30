@@ -8,15 +8,21 @@
 <body>
     <div id="root"></div>
 
+    <!-- CDN -->
+    <!-- Used for core react functions -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <!-- Used to provide functions to connect to DOM -->
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script> 
+
     <script>
-        
-        // document.getElementById("root").innerHTML = "Helloooo";
+        // Create Element to render (App in create react app conventions)
+        const heading = React.createElement("h1", {}, "Hello React");
 
-        const heading = document.createElement("h1");
-        heading.innerHTML = "Hello JavaScript";
+        // Create Root
+        const root = ReactDOM.createRoot(document.getElementById("root"));
 
-        const root = document.getElementById("root");
-        root.appendChild(heading);
+        // Render the element in the root.
+        root.render(heading);
     </script>
 </body>
 </html>
