@@ -1,0 +1,14 @@
+{
+  "name": "2",
+  "version": "1.0.0",
+  "description": "Igniting React App",
+  "main": "App.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Ayush Chauhan",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel": "^2.9.3"
+  }
+}
