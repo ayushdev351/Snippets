@@ -1,7 +1,9 @@
+import React from "react";
+import ReactDOM from "react-dom";
+
 // createElement is a legacy API. 
 // Heading is an object.
 // An element is a lightweight description of a piece of the user interface. 
-
 
 const parent = React.createElement("div", {id : "parent"}, 
     React.createElement("div", {id : "child"},[
