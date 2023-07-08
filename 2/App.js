@@ -11,12 +11,12 @@ const parent = React.createElement("div", {id : "parent"},
 // React Element -> Using JSX
 const jsxElement = <h1>Hi from JSX Element</h1>;
 
-// React Functional Component
+// React Functional Component -> Returns react element created using JSX
 const FunctionalComponent = () => {
     return(
         <div>
             <h1>Hi from functional Component</h1>
-            {2 + 5}
+            {jsxElement}
         </div>
     )
 }
