@@ -1,24 +1,45 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-// Component Composition
+// Header Component
 
 const Header = () => {
     return(
-        <div>
-            <h1>Header</h1>
-            <HeaderElement name = "One"/>
-            <HeaderElement name = "two"/>
-            <HeaderElement name = "three"/>
-        </div>
+        <React.Fragment>
+            <div className="header">
+                <Logo/>
+                <SearchBar/>
+                <UserIcon/>
+            </div>
+        </React.Fragment>
     )
 }
 
-const HeaderElement = (props) => {
+const Logo = () => {
     return(
-        <div>
-            <h3>Header Element {props.name}</h3>
-        </div>
+        <React.Fragment>
+            <div className = "logo">
+
+            </div>
+        </React.Fragment>
+    )
+}
+
+const SearchBar = () => {
+    return(
+        <React.Fragment>
+            <input className = "searchBar" placeholder="Search"></input>
+        </React.Fragment>
+    )
+}
+
+const UserIcon = () => {
+    return(
+        <React.Fragment>
+            <div className="userIcon">
+
+            </div>
+        </React.Fragment>
     )
 }
 

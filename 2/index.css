@@ -1,0 +1,41 @@
+*{
+    margin : 0;
+}
+
+.header{
+    padding : 5px;
+    height: 70px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: gray;
+    gap: 10px;
+}
+
+.logo{
+    height: 50px;
+    width: 50px;
+    background-color: red;
+    border-radius: 50%;
+}
+
+.searchBar{
+    height: 30px;
+    width: 600px;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    text-decoration: none;
+    outline: none;
+}
+
+.userIcon{
+    height: 50px;
+    width: 50px;
+    background-color: green;
+    border-radius: 50%;
+}
+
+
+
