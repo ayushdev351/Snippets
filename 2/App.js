@@ -7,17 +7,17 @@ const Header = () => {
     return(
         <div>
             <h1>Header</h1>
-            <HeaderElement/>
-            <HeaderElement/>
-            <HeaderElement/>
+            <HeaderElement name = "One"/>
+            <HeaderElement name = "two"/>
+            <HeaderElement name = "three"/>
         </div>
     )
 }
 
-const HeaderElement = () => {
+const HeaderElement = (props) => {
     return(
         <div>
-            <h3>Header Element</h3>
+            <h3>Header Element {props.name}</h3>
         </div>
     )
 }
