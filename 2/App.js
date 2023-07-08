@@ -11,8 +11,16 @@ const parent = React.createElement("div", {id : "parent"},
 // React Element -> Using JSX
 const jsxElement = <h1>Hi from JSX Element</h1>;
 
+// React Functional Component
+const FunctionalComponent = () => {
+    return(
+        <div>
+            <h1>Hi from functional Component</h1>
+        </div>
+    )
+}
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-// Here heading object is converted into actual DOM element
-root.render(jsxElement)
+// Here object is converted into actual DOM element
+root.render(<FunctionalComponent/>)
