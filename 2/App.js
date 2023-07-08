@@ -16,6 +16,7 @@ const FunctionalComponent = () => {
     return(
         <div>
             <h1>Hi from functional Component</h1>
+            {2 + 5}
         </div>
     )
 }
