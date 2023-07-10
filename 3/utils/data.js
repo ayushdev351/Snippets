@@ -1,4 +1,4 @@
-export const resList = [
+export const resListData = [
     {
         "data": {
             "type": "F",
