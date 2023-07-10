@@ -1,11 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import ResCard from "./ResCard";
 import { resListData } from "../utils/data";
+import { RES_API_URL } from "../utils/constants";
 
 const Body = () => {
 
+    //Restraunt List
     const [resList, setResList] = useState(resListData);
+
+    //Filters
     const [ratingFilterActive, setRatingFilterActive] = useState(0);
     const [costFilterActive, setCostFilterActive] = useState(0);
     const [deliveryTimeFilterActive, setDeliveryTimeFilterActive] = useState(0);
@@ -42,6 +46,16 @@ const Body = () => {
         setRatingFilterActive(0);
         setCostFilterActive(0);
         setDeliveryTimeFilterActive(0);
+    }
+
+    useEffect(() => {
+        fetchData();
+    },[]);
+
+    const fetchData = async() => {
+        const data = await fetch(RES_API_URL);
+        const jsonData = await data.json();
+        setResList(jsonData.data.cards[2].data.data.cards);
     }
 
     return(

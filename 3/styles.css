@@ -55,11 +55,6 @@
     box-shadow: 0 0 15px rgba(33,33,33,.2);
 }
 
-/* .res-img-container{
-    width: 250px;
-    height: 150px;
-} */
-
 .res-img{
     width: 230px;
     height: 150px;
@@ -151,5 +146,5 @@
     flex-wrap: wrap;
     justify-content: space-between;
     align-items:baseline;
-    gap: 30px;
+    gap: 50px 30px;
 }
