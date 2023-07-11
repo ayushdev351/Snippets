@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 
+import Shimmer from "./Shimmer";
 import ResCard from "./ResCard";
-import { resListData } from "../utils/data";
 import { RES_API_URL } from "../utils/constants";
 
 const Body = () => {
 
     //Restraunt List
-    const [resList, setResList] = useState(resListData);
+    const [resList, setResList] = useState([]);
 
     //Filters
     const [ratingFilterActive, setRatingFilterActive] = useState(0);
@@ -42,7 +42,7 @@ const Body = () => {
     }
 
     const ClearFilter = () => {
-        setResList(resListData);
+        setResList(resList);
         setRatingFilterActive(0);
         setCostFilterActive(0);
         setDeliveryTimeFilterActive(0);
@@ -66,11 +66,20 @@ const Body = () => {
                 <button className={costFilterActive ? "filter-active" : ""} onClick={CostFilter}>Cost &lt; Rs 200</button>
                 <button className={deliveryTimeFilterActive ? "filter-active" : ""} onClick={DeliveryTimeFilter}>Delivery Time &lt; 20 Mins</button>
             </div>
-            <div className="resCards">
-                {
-                    resList.map((resData) => <ResCard key={resData.data.id} resData = {resData}/>)
-                }
-            </div>
+            {
+                resList.length ? 
+                (
+                    <div className="resCards">
+                        {
+                            resList.map((resData) => <ResCard key={resData.data.id} resData = {resData}/>)
+                        }
+                    </div>
+                )
+                :
+                (
+                    <Shimmer/>
+                )
+            }
         </div>
     )
 }

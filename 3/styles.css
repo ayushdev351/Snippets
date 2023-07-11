@@ -38,7 +38,7 @@
 
 /* card */
 
-.res-card{
+.res-card, .shimmer-card{
     width: 230px;
     height: 260px;
     padding: 5px;
@@ -50,19 +50,45 @@
     transition: all 0.25s;
 }
 
+.shimmer-card{
+    background-color: rgb(228, 222, 222);
+}
+
+.shimmer-text{
+    height: 15px;
+}
+
+.shimmer-small-text{
+    height: 10px;
+    margin-bottom: 20px;
+}
+
+.shimmer-info{
+    height: 30px;
+}
+
+.shimmer-text, .shimmer-small-text, .shimmer-info{
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.shimmer-image, .shimmer-text, .shimmer-small-text, .shimmer-info{
+    background-color: #cfcaca;
+}
+
 .res-card:hover{
     border: solid 1px gray;
     box-shadow: 0 0 15px rgba(33,33,33,.2);
 }
 
-.res-img{
+.res-img, .shimmer-image{
     width: 230px;
     height: 150px;
     object-fit: cover;
     border-radius: 5px;
 }
 
-.res-name{
+.res-name, .shimmer-text{
     font-size: 16px;
     padding-top: 5px;
     font-weight: 600;
@@ -140,7 +166,7 @@
     background-color: #fac0b0;
 }
 
-.resCards{
+.resCards, .shimmer{
     margin-top: 30px;
     display: flex;
     flex-wrap: wrap;
