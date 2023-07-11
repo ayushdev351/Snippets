@@ -15,6 +15,17 @@ const Body = () => {
     const [costFilterActive, setCostFilterActive] = useState(0);
     const [deliveryTimeFilterActive, setDeliveryTimeFilterActive] = useState(0);
 
+    //SearchFilter
+    const [searchText, setSearchText] = useState("");
+
+    // Not working good when user deletes the text
+    const searchInputHandler = (e) => {
+        setSearchText(e.target.value);
+        ClearFilter();
+        const newResList = resList.filter((resData) => resData.data.name.toUpperCase().includes(searchText.toUpperCase()));
+        setFilterList(newResList);
+    }
+
     const RatingFilter = () => {
         if(!ratingFilterActive)
         {
@@ -65,10 +76,13 @@ const Body = () => {
     return(
         <div className="body">
             <div className="filters">
-                <button className="clear-filter" onClick={ClearFilter}>Clear Filters</button>
-                <button className={ratingFilterActive ? "filter-active" : ""} onClick={RatingFilter}>Rating &gt; 4</button>
-                <button className={costFilterActive ? "filter-active" : ""} onClick={CostFilter}>Cost &lt; Rs 200</button>
-                <button className={deliveryTimeFilterActive ? "filter-active" : ""} onClick={DeliveryTimeFilter}>Delivery Time &lt; 20 Mins</button>
+                <input className="search-filter" placeholder="Search for Restraunts near you" onChange={searchInputHandler} value={searchText}/>
+                <div className="filter-btns">
+                    <button className="clear-filter" onClick={ClearFilter}>Clear Filters</button>
+                    <button className={ratingFilterActive ? "filter-active" : ""} onClick={RatingFilter}>Rating &gt; 4</button>
+                    <button className={costFilterActive ? "filter-active" : ""} onClick={CostFilter}>Cost &lt; Rs 200</button>
+                    <button className={deliveryTimeFilterActive ? "filter-active" : ""} onClick={DeliveryTimeFilter}>Delivery Time &lt; 20 Mins</button>
+                </div>
             </div>
             {
                 resList.length ? 

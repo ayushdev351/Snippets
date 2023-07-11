@@ -143,12 +143,26 @@
 .filters{
     display: flex;
     flex-direction: row;
-    justify-content: start;
+    justify-content: space-between;
+    align-items: center;
     gap: 20px;
     align-items: center;
 }
 
-.filters > *{
+.search-filter{
+    background-color: transparent;
+    text-decoration: none;
+    outline: none;
+    border: none;
+    width: 500px;
+    background-color: #eae5e5;
+    border-radius: 15px;
+    padding: 10px 20px;
+    color: gray;
+    font-size: 16px;
+}
+
+.filter-btns > *{
     padding: 5px 10px;
     cursor: pointer;
     text-decoration: none;
@@ -156,6 +170,7 @@
     border-radius: 50px;
     background-color: #e7e1e1;
     font-size: 12px;
+    margin: 0 10px;
 }
 
 .filter-active{
@@ -167,7 +182,7 @@
 }
 
 .resCards, .shimmer{
-    margin-top: 30px;
+    margin-top: 40px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
