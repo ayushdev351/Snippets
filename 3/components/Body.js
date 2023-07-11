@@ -8,6 +8,7 @@ const Body = () => {
 
     //Restraunt List
     const [resList, setResList] = useState([]);
+    const [filterList, setFilterList] = useState([]);
 
     //Filters
     const [ratingFilterActive, setRatingFilterActive] = useState(0);
@@ -17,8 +18,8 @@ const Body = () => {
     const RatingFilter = () => {
         if(!ratingFilterActive)
         {
-            const newResList = resList.filter((resData) => resData.data.avgRating > 4);
-            setResList(newResList);
+            const newResList = filterList.filter((resData) => resData.data.avgRating > 4);
+            setFilterList(newResList);
             setRatingFilterActive(1);
         }
     }
@@ -26,8 +27,8 @@ const Body = () => {
     const CostFilter = () => {
         if(!costFilterActive)
         {
-            const newResList = resList.filter((resData) => resData.data.costForTwo < 20000);
-            setResList(newResList);
+            const newResList = filterList.filter((resData) => resData.data.costForTwo < 20000);
+            setFilterList(newResList);
             setCostFilterActive(1);
         }
     }
@@ -35,18 +36,20 @@ const Body = () => {
     const DeliveryTimeFilter = () => {
         if(!deliveryTimeFilterActive)
         {
-            const newResList = resList.filter((resData) => resData.data.deliveryTime < 20);
-            setResList(newResList);
+            const newResList = filterList.filter((resData) => resData.data.deliveryTime < 20);
+            setFilterList(newResList);
             setDeliveryTimeFilterActive(1);
         }
     }
 
     const ClearFilter = () => {
-        setResList(resList);
+        setFilterList(resList);
         setRatingFilterActive(0);
         setCostFilterActive(0);
         setDeliveryTimeFilterActive(0);
     }
+
+    // fetching data
 
     useEffect(() => {
         fetchData();
@@ -56,6 +59,7 @@ const Body = () => {
         const data = await fetch(RES_API_URL);
         const jsonData = await data.json();
         setResList(jsonData.data.cards[2].data.data.cards);
+        setFilterList(jsonData.data.cards[2].data.data.cards);
     }
 
     return(
@@ -71,7 +75,7 @@ const Body = () => {
                 (
                     <div className="resCards">
                         {
-                            resList.map((resData) => <ResCard key={resData.data.id} resData = {resData}/>)
+                            filterList.map((resData) => <ResCard key={resData.data.id} resData = {resData}/>)
                         }
                     </div>
                 )
