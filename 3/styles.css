@@ -43,8 +43,9 @@
 }
 
 .nav-item a.active{
-    color : rgb(79, 77, 77);
-    font-weight: 500;
+    border-bottom: solid 2px white;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
 }
 
 /* card */

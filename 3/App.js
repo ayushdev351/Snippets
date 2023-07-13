@@ -9,6 +9,8 @@ import Cart from "./components/Cart"
 import Help from "./components/Help"
 import Error from "./components/Error";
 
+import Restaurant from "./components/Restaurant";
+
 import "./styles.css";
 
 const AppLayout = () => {
@@ -41,6 +43,10 @@ const router = createBrowserRouter([
                 path: "/cart",
                 element: <Cart/>
             },
+            {
+                path : "/restaurant",
+                element: <Restaurant/>
+            }
         ],
         errorElement : <Error/>
     },
