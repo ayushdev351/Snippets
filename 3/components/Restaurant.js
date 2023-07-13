@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 
 import { RES_INFO_API } from "../utils/constants";
 import Shimmer from "./Shimmer";
+import RestaurantPageHead from "./RestaurantPageHead";
+import ResPageDish from "./ResPageDish";
 
 const Restaurant = () => {
 
@@ -22,17 +24,28 @@ const Restaurant = () => {
 
     if(resData === null) return <Shimmer/>
 
-    const {name, avgRating, totalRatingsString} = resData?.data.cards[0]?.card.card.info;
+    const {name, avgRating, totalRatingsString, locality, cuisines, areaName} = resData?.data?.cards[0]?.card?.card?.info;
     const {itemCards} = resData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card;
     
     return(
         <div>
-            <h1>{name}</h1>
-            <h3>{avgRating}</h3>
-            <p>{totalRatingsString}</p>
+            <RestaurantPageHead name = {name} rating = {avgRating} ratingCount = {totalRatingsString} area = {locality + ", " + areaName} cuisines = {cuisines.join(", ")}/>
+            
+            <div className="dish-container">
             {
-                itemCards.map((itemCard) => <h4>{itemCard?.card?.info?.name}</h4>)
+                itemCards?.map((itemCard) => {
+                    return(
+                        <ResPageDish 
+                        name = {itemCard?.card?.info?.name}
+                        price = {itemCard?.card?.info?.price}
+                        desc = {itemCard?.card?.info?.description}
+                        image = {itemCard?.card?.info?.imageId}
+                        />
+                    )
+                })
             }
+            <ResPageDish/>
+            </div>
         </div>
     )
 }
