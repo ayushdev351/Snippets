@@ -1,25 +1,38 @@
 import {useState, useEffect} from "react"
+import { useParams } from "react-router-dom";
+
+import { RES_INFO_API } from "../utils/constants";
+import Shimmer from "./Shimmer";
 
 const Restaurant = () => {
 
     const [resData, setResData] = useState(null);
+    const {id} = useParams();
 
     useEffect(() => {
         fetchData();
     }, []);
 
     const fetchData = async() => {
-        const data = await fetch("https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.642996778080303&lng=77.37636666744947&restaurantId=183389&submitAction=ENTER");
+        const data = await fetch(RES_INFO_API + id);
         const json = await data.json();
-        console.log(json);
+        setResData(json)
+        console.log(json)
     }
 
+    if(resData === null) return <Shimmer/>
+
+    const {name, avgRating, totalRatingsString} = resData?.data.cards[0]?.card.card.info;
+    const {itemCards} = resData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card;
+    
     return(
         <div>
-            <h1>Hello</h1>
-            <h2>Hii</h2>
-            <h2>Byy</h2>
-            <h2>Hiii again</h2>
+            <h1>{name}</h1>
+            <h3>{avgRating}</h3>
+            <p>{totalRatingsString}</p>
+            {
+                itemCards.map((itemCard) => <h4>{itemCard?.card?.info?.name}</h4>)
+            }
         </div>
     )
 }
