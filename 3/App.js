@@ -7,6 +7,7 @@ import Body from "./components/Body";
 import Contact from "./components/Contact";
 import Cart from "./components/Cart"
 import Help from "./components/Help"
+import Error from "./components/Error";
 
 import "./styles.css";
 
@@ -39,8 +40,9 @@ const router = createBrowserRouter([
             {
                 path: "/cart",
                 element: <Cart/>
-            }
-        ]
+            },
+        ],
+        errorElement : <Error/>
     },
 ])
 
