@@ -16,14 +16,17 @@ class Parent extends React.Component{
 
     async componentDidMount(){
         
-        console.log("Parent Component Mounted")
+        // console.log("Parent Component Mounted")
 
-        const data = await fetch("https://api.github.com/users/ayushdev351");
-        const json = await data.json();
+        // const data = await fetch("https://api.github.com/users/ayushdev351");
+        // const json = await data.json();
 
-        this.setState({
-            name : json.name,
-        })
+        // this.setState({
+        //     name : json.name,
+        // })
+        this.timerId = setInterval(() => {
+            console.log("tick");
+        }, 1000)
     }
 
     // This is only called when state gets updated -> It is not called on the initial render but only after 
@@ -34,7 +37,9 @@ class Parent extends React.Component{
     }
 
     componentWillUnmount(){
-        console.log("Parent Component Will Unmount")
+        console.log("All Cleanup Done")
+        console.log("Parent Component Will Unmount");
+        clearInterval(this.timerId)
     }
 
     render(){
@@ -43,10 +48,8 @@ class Parent extends React.Component{
 
         return(
             <div>
+                <h1 style={{"backgroundColor" : "aqua", "padding" : "10px"}}>Made API Call to fetch Data</h1>
                 <h1>Class Component State : {this.state.name}</h1>
-                <button onClick={this.handleClick}>Make API Call</button>
-                <Child name = "1"/>
-                <Child name = "2"/>
             </div>
         )
     }
