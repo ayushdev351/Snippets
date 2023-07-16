@@ -28,8 +28,8 @@ const App = () => {
 const MainComponent = () => {
     return(
         <div>
-            {/* <FunctionalComp/> */}
-            <ClassComp propsData = "props data"/>
+            <FunctionalComp/>
+            {/* <ClassComp propsData = "props data"/> */}
         </div>
     )
 }
