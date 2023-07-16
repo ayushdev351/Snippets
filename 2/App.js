@@ -1,16 +1,17 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import ReactDOM from "react-dom/client";
 
-// Multiple Line React Element -> Using JSX
+import FunctionalComp from "./FunctionalComp"
+import ClassComp from "./ClassComp";
 
 const element = (
     <div>
-        <h1>Hello</h1>
-        <h2>Multiple Lines</h2>
+        {/* <FunctionalComp/> */}
+        <ClassComp/>
     </div>
 )
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-// Here object is converted into actual DOM element
+
 root.render(element)
