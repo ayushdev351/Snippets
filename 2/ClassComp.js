@@ -14,13 +14,13 @@ class Parent extends React.Component{
         console.log("Parent Constructor called");
     }
 
-    // state = {
-    //     count : 0,
-    // }
+    componentDidMount(){
+        console.log("Parent Component Mounted")
+    }
 
     render(){
 
-        console.log("Parent Render Called")
+        console.log("Parent Rendered")
 
         return(
             <div>

@@ -8,10 +8,13 @@ class Child extends React.Component{
         console.log("Child " + this.props.name + " Constructor")
     }
 
+    componentDidMount(){
+        console.log("Child "+  this.props.name  + " Component Mounted")
+    }
 
     render(){
 
-        console.log("Child " + this.props.name + " Render")
+        console.log("Child " + this.props.name + " Rendered")
 
         return(
             <div>
