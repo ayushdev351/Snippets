@@ -20,6 +20,10 @@ class Child extends React.Component{
         console.log("Child "+  this.props.name  + " Component Updated")
     }
 
+    componentWillUnmount(){
+        console.log("Child "+  this.props.name  + " Component Will Unmount")
+    }
+
     render(){
         
         const counter = () => {

@@ -33,6 +33,10 @@ class Parent extends React.Component{
         console.log("Parent Component Updated");
     }
 
+    componentWillUnmount(){
+        console.log("Parent Component Will Unmount")
+    }
+
     render(){
 
         console.log("Parent Rendered")
@@ -41,8 +45,8 @@ class Parent extends React.Component{
             <div>
                 <h1>Class Component State : {this.state.name}</h1>
                 <button onClick={this.handleClick}>Make API Call</button>
-                {/* <Child name = "1"/>
-                <Child name = "2"/> */}
+                <Child name = "1"/>
+                <Child name = "2"/>
             </div>
         )
     }
