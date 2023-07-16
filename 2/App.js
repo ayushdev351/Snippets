@@ -7,7 +7,7 @@ import ClassComp from "./ClassComp";
 const element = (
     <div>
         {/* <FunctionalComp/> */}
-        <ClassComp/>
+        <ClassComp propsData = "props data"/>
     </div>
 )
 
