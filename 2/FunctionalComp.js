@@ -11,19 +11,27 @@ const FunctionalComp = () => {
 
     useEffect(() => {
         console.log("Use Effect Called")
-        fetchData();
+        
+        const timerId = setInterval(() => {
+            console.log("Tick")
+        }, 1000)
+
+        return() => {
+            console.log("Use Effect Return --> Cleanup Done")
+            clearInterval(timerId);
+        }
     },[id])
 
     // [] -> useEffect called only on initial render
     // nothing -> useEffect called on every Render
     // [id] -> useEffect called everytime state of id changes using setId() function
 
-    const fetchData = async() => {
-        const data = await fetch("https://api.github.com/users/" + id);
-        const json = await data.json();
-        setName(json.name);
-        console.log("Data Loaded -> " + json.name)
-    }
+    // const fetchData = async() => {
+    //     const data = await fetch("https://api.github.com/users/" + id);
+    //     const json = await data.json();
+    //     setName(json.name);
+    //     console.log("Data Loaded -> " + json.name)
+    // }
 
     const changeHandler = (e) => {
         setInput(e.target.value);
