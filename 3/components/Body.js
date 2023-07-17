@@ -1,15 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import Shimmer from "./Shimmer";
 import ResCard from "./ResCard";
-import { RES_API_URL } from "../utils/constants";
+
+import useResData from "../customHooks/useResData";
 
 const Body = () => {
 
-    //Restraunt List
-    const [resList, setResList] = useState([]);
-    const [filterList, setFilterList] = useState([]);
+    // resData
+    const {resList, filterList} = useResData();
 
     //Filters
     const [ratingFilterActive, setRatingFilterActive] = useState(0);
@@ -59,19 +59,6 @@ const Body = () => {
         setRatingFilterActive(0);
         setCostFilterActive(0);
         setDeliveryTimeFilterActive(0);
-    }
-
-    // fetching data
-
-    useEffect(() => {
-        fetchData();
-    },[]);
-
-    const fetchData = async() => {
-        const data = await fetch(RES_API_URL);
-        const jsonData = await data.json();
-        setResList(jsonData.data.cards[2].data.data.cards);
-        setFilterList(jsonData.data.cards[2].data.data.cards);
     }
 
     return(

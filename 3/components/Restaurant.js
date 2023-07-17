@@ -1,24 +1,21 @@
-// import {useState, useEffect} from "react"
 import { useParams } from "react-router-dom";
 import Shimmer from "./Shimmer";
 import RestaurantPageHead from "./RestaurantPageHead";
 import ResPageDish from "./ResPageDish";
 
-import useResData from "../customHooks/useResData";
+import useDishData from "../customHooks/useDishData";
 
 const Restaurant = () => {
     const {id} = useParams();
-    const resData = useResData(id);
-    
-    if(resData === null) return <Shimmer/>
+    const dishData = useDishData(id);
 
-    const {name, avgRating, totalRatingsString, locality, cuisines, areaName} = resData?.data?.cards[0]?.card?.card?.info;
-    const {itemCards} = resData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card;
+    if(dishData === null) return <Shimmer/>
+
+    const {name, avgRating, totalRatingsString, locality, cuisines, areaName} = dishData?.data?.cards[0]?.card?.card?.info;
+    const {itemCards} = dishData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card;
 
     return(
-        
-        <div>
-            
+        <div> 
             <RestaurantPageHead name = {name} rating = {avgRating} ratingCount = {totalRatingsString} area = {locality + ", " + areaName} cuisines = {cuisines.join(", ")}/>
             
             <div className="dish-container">

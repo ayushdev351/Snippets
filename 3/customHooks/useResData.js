@@ -1,21 +1,23 @@
 import { useState, useEffect } from "react";
-import { RES_INFO_API } from "../utils/constants";
+import { RES_API_URL } from "../utils/constants";
 
-const useResData = (id) => {
-    const [resData, setResData]  = useState(null)
-    // console.log(11)
+const useResData = () => {
+
+    const [resList, setResList] = useState("")
+    const [filterList, setFilterList] = useState("")
+
     useEffect(() => {
         fetchData();
-    }, [])
+    },[]);
 
     const fetchData = async() => {
-        const data = await fetch(RES_INFO_API + id);
-        const json = await data.json();
-
-        setResData(json);
+        const data = await fetch(RES_API_URL);
+        const jsonData = await data.json();
+        setResList(jsonData.data.cards[2].data.data.cards);
+        setFilterList(jsonData.data.cards[2].data.data.cards);
     }
 
-    return resData
+    return {resList, filterList};
 }
 
-export default useResData;
+export default useResData
