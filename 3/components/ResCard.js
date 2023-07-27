@@ -20,4 +20,24 @@ const ResCard = ({resData}) => {
     )
 }
 
+// Higher Order Component
+
+export const ResCardTop = (ResCard) => {
+    return(props) => {
+        return(
+            <div>
+                <h5 style = {{
+                    "position" : "absolute",
+                    "margin" : "-5px -15px",
+                    "padding" : "5px",
+                    "backgroundColor" : "black",
+                    "borderRadius" : "5px",
+                    "color" : "white"
+                }}>Top Choice</h5>
+                <ResCard {...props}/>
+            </div>
+        )
+    }
+}
+
 export default ResCard;

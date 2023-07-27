@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import Shimmer from "./Shimmer";
-import ResCard from "./ResCard";
+import ResCard, {ResCardTop} from "./ResCard";
 import { RES_API_URL } from "../utils/constants";
 
 const Body = () => {
@@ -59,10 +59,12 @@ const Body = () => {
     const fetchData = async() => {
         const data = await fetch(RES_API_URL);
         const jsonData = await data.json();
-        console.log(jsonData.data.cards[5].card.card.gridElements.infoWithStyle.restaurants)
-        setResList(jsonData.data.cards[5].card.card.gridElements.infoWithStyle.restaurants);
-        setFilterList(jsonData.data.cards[5].card.card.gridElements.infoWithStyle.restaurants);
+        console.log(jsonData?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+        setResList(jsonData?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        setFilterList(jsonData?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     }
+
+    const TopResCard = ResCardTop(ResCard);
 
     return(
         <div className="body">
@@ -75,14 +77,17 @@ const Body = () => {
                 </div>
             </div>
             {
-                resList.length ? 
+                resList?.length ? 
                 (
                     <div className="resCards">
                         {
                             filterList.map((resData) => {
                                 return(
-                                    <Link style={{"text-decoration" : "none", "color" : "black"}} key={resData.info.id} to = {"restaurant/" + resData.info.id} >
-                                        <ResCard resData = {resData}/>
+                                    <Link style={{"textDecoration" : "none", "color" : "black"}} key={resData.info.id} to = {"restaurant/" + resData.info.id} >
+                                        { resData.info.avgRating < 4.3 ?
+                                            <ResCard resData = {resData}/> :
+                                            <TopResCard resData = {resData}/>
+                                        }
                                     </Link>
                                 )
                             })
