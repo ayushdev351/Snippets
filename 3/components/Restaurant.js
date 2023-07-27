@@ -1,13 +1,15 @@
 import { useParams } from "react-router-dom";
+import { useState } from "react";
+
 import Shimmer from "./Shimmer";
 import RestaurantPageHead from "./RestaurantPageHead";
 import DishListAccordian from "./DishListAccordian";
-
 import useDishData from "../customHooks/useDishData";
 
 const Restaurant = () => {
     const {id} = useParams();
     const dishData = useDishData(id);
+    const [showIndex, setShowIndex] = useState(0)
 
     if(dishData === null) return <Shimmer/>
 
@@ -21,14 +23,13 @@ const Restaurant = () => {
             
             <div>
             {
-                catCards?.map((catCards) => {
-                    console.log(catCards.card.card.title)
-                    console.log(catCards?.card?.card?.itemCards)
+                catCards?.map((catCards, index) => {
                     return(
-                        <DishListAccordian key = {catCards?.card?.card?.title} title = {catCards?.card?.card?.title} itemCards = {catCards?.card?.card?.itemCards}/>
+                        // setShowIndex is kind of acting like a CLOSURE function
+                        <DishListAccordian key = {catCards?.card?.card?.title} setShowIndex = {() => {index === showIndex ? setShowIndex(null) : setShowIndex(index)}} open = {index === showIndex ? true : false} title = {catCards?.card?.card?.title} itemCards = {catCards?.card?.card?.itemCards}/>
                     )
                 })
-            }
+            } 
             </div>
         </div>
     )

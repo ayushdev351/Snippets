@@ -1,11 +1,9 @@
-import { useState } from "react";
 import ResPageDish from "./ResPageDish";
 
-const DishListAccordian = ({itemCards, title}) => {
-    const [open, setOpen] = useState(0)
+const DishListAccordian = ({itemCards, title, open, setShowIndex}) => {
 
     const clickHandler = () => {
-        setOpen(!open)
+        setShowIndex()
     }
 
     return(
