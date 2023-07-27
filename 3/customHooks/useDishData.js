@@ -12,6 +12,7 @@ const useDishData = (id) => {
         const data = await fetch(RES_INFO_API + id);
         const json = await data.json();
 
+        console.log(json)
         setDishData(json);
     }
 

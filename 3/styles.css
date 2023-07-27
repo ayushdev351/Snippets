@@ -249,21 +249,37 @@
     font-weight: 500;
 }
 
-.dish-container{
-    margin : 20px 300px;
+
+.accordian{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   margin: 30px 300px;
+   background-color: rgb(204, 200, 200);
+   border-radius: 10px;
+}
+
+.accordian-name{
+    text-align: center;
+    width: 100%;
+    padding: 7px 0;
+    background-color: rgb(172, 169, 169);
+    border-radius: 10px;
+    cursor: pointer;
 }
 
 .res-page-dish{
-    background-color: white;
     display: flex;
-    padding: 10px 20px;
-    align-items: flex-start; 
-    margin: 40px 0;
     justify-content: space-between;
-    border-bottom: solid 1px rgb(193, 191, 191);
+    margin: 25px;
+    align-items: start;
+    padding-bottom: 10px;
+    border-bottom: 1px dotted rgb(159, 156, 156);
 }
 
 .dish-info{
+    flex: 0.7;
     color: black;
     margin-right: 20px;
 }
@@ -282,9 +298,12 @@
     margin-top: 5px;
 }
 
-.dish-img{
+.dish-img-container{
     border-radius: 10px;
-    width: 100px;
-    height: 90px;
-    object-fit: cover;
+}
+
+.dish-img-res{
+    width: 150px;
+    height: 130px;
+    border-radius: 10px;
 }
