@@ -197,9 +197,9 @@
     margin-top: 40px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content:left;
     align-items:baseline;
-    gap: 50px 30px;
+    gap: 50px;
 }
 
 
