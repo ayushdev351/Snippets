@@ -13,8 +13,7 @@ const Body = () => {
 
     //Filters
     const [ratingFilterActive, setRatingFilterActive] = useState(0);
-    const [costFilterActive, setCostFilterActive] = useState(0);
-    const [deliveryTimeFilterActive, setDeliveryTimeFilterActive] = useState(0);
+    const [costFilterActive, setCostFilterActive] = useState(0)
 
     //SearchFilter
     const [searchText, setSearchText] = useState("");
@@ -23,14 +22,14 @@ const Body = () => {
     const searchInputHandler = (e) => {
         setSearchText(e.target.value);
         ClearFilter();
-        const newResList = resList.filter((resData) => resData.data.name.toUpperCase().includes(searchText.toUpperCase()));
+        const newResList = resList.filter((resData) => resData.info.name.toUpperCase().includes(searchText.toUpperCase()));
         setFilterList(newResList);
     }
 
     const RatingFilter = () => {
         if(!ratingFilterActive)
         {
-            const newResList = filterList.filter((resData) => resData.data.avgRating > 4);
+            const newResList = filterList.filter((resData) => resData.info.avgRating > 4);
             setFilterList(newResList);
             setRatingFilterActive(1);
         }
@@ -39,18 +38,9 @@ const Body = () => {
     const CostFilter = () => {
         if(!costFilterActive)
         {
-            const newResList = filterList.filter((resData) => resData.data.costForTwo < 20000);
+            const newResList = filterList.filter((resData) => parseInt(resData.info.costForTwo.substr(1, 3)) < 400);
             setFilterList(newResList);
             setCostFilterActive(1);
-        }
-    }
-
-    const DeliveryTimeFilter = () => {
-        if(!deliveryTimeFilterActive)
-        {
-            const newResList = filterList.filter((resData) => resData.data.deliveryTime < 20);
-            setFilterList(newResList);
-            setDeliveryTimeFilterActive(1);
         }
     }
 
@@ -58,7 +48,6 @@ const Body = () => {
         setFilterList(resList);
         setRatingFilterActive(0);
         setCostFilterActive(0);
-        setDeliveryTimeFilterActive(0);
     }
 
     // fetching data
@@ -70,8 +59,9 @@ const Body = () => {
     const fetchData = async() => {
         const data = await fetch(RES_API_URL);
         const jsonData = await data.json();
-        setResList(jsonData.data.cards[2].data.data.cards);
-        setFilterList(jsonData.data.cards[2].data.data.cards);
+        console.log(jsonData.data.cards[5].card.card.gridElements.infoWithStyle.restaurants)
+        setResList(jsonData.data.cards[5].card.card.gridElements.infoWithStyle.restaurants);
+        setFilterList(jsonData.data.cards[5].card.card.gridElements.infoWithStyle.restaurants);
     }
 
     return(
@@ -81,8 +71,7 @@ const Body = () => {
                 <div className="filter-btns">
                     <button className="clear-filter" onClick={ClearFilter}>Clear Filters</button>
                     <button className={ratingFilterActive ? "filter-active" : ""} onClick={RatingFilter}>Rating &gt; 4</button>
-                    <button className={costFilterActive ? "filter-active" : ""} onClick={CostFilter}>Cost &lt; Rs 200</button>
-                    <button className={deliveryTimeFilterActive ? "filter-active" : ""} onClick={DeliveryTimeFilter}>Delivery Time &lt; 20 Mins</button>
+                    <button className={costFilterActive ? "filter-active" : ""} onClick={CostFilter}>Cost &lt; Rs 400</button>
                 </div>
             </div>
             {
@@ -92,7 +81,7 @@ const Body = () => {
                         {
                             filterList.map((resData) => {
                                 return(
-                                    <Link style={{"text-decoration" : "none", "color" : "black"}} key={resData.data.id} to = {"restaurant/" + resData.data.id} >
+                                    <Link style={{"text-decoration" : "none", "color" : "black"}} key={resData.info.id} to = {"restaurant/" + resData.info.id} >
                                         <ResCard resData = {resData}/>
                                     </Link>
                                 )

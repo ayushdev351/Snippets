@@ -2,7 +2,7 @@ import { Cloudinary_URL } from "../utils/constants";
 
 const ResCard = ({resData}) => {
 
-    const {cloudinaryImageId, name, cuisines, avgRating, deliveryTime, costForTwo} = resData?.data;
+    const {cloudinaryImageId, name, cuisines, avgRating, totalRatingsString, costForTwo} = resData?.info;
     
     return(
         <div className="res-card">
@@ -13,8 +13,8 @@ const ResCard = ({resData}) => {
             <p className="res-cuisines">{cuisines.join(", ")}</p>
             <div className="res-info">
                 <p className="res-rating">{avgRating} star</p>
-                <h5 className="res-delivery-time">{deliveryTime} mins</h5>
-                <p className="res-price">Rs {costForTwo / 100}</p>
+                <h5 className="res-delivery-time">{totalRatingsString}</h5>
+                <p className="res-price">{costForTwo}</p>
             </div>
         </div>
     )
